@@ -26,6 +26,7 @@ func Provider() *schema.Provider {
 		DataSourcesMap: map[string]*schema.Resource{
 			"datafy_environments": dataSourceEnvironments(),
 			"datafy_environment":  dataSourceEnvironment(),
+			"datafy_project":      dataSourceProject(),
 		},
 		ProviderMetaSchema:   nil,
 		ConfigureContextFunc: providerConfigure,
