@@ -49,6 +49,7 @@ func NewClient(host, profileName string) (*Client, error) {
 func (c *Client) doRequest(req *http.Request) ([]byte, error) {
 	req.Header.Set("Authorization", c.Token.AccessToken)
 	req.Header.Set("accept", "application/json")
+	req.Header.Set("Content-Type", "application/json")
 
 	res, err := c.HTTPClient.Do(req)
 	if err != nil {

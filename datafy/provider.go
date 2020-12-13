@@ -22,7 +22,9 @@ func Provider() *schema.Provider {
 				DefaultFunc: schema.EnvDefaultFunc("DATAFY_PROFILE", DefaultDatafyProfile),
 			},
 		},
-		ResourcesMap: nil,
+		ResourcesMap: map[string]*schema.Resource{
+			"datafy_environment": resourceEnvironment(),
+		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"datafy_environment": dataSourceEnvironment(),
 			"datafy_project":     dataSourceProject(),

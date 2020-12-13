@@ -28,3 +28,11 @@ data "datafy_project" "project" {
 output "project" {
   value = data.datafy_project.project
 }
+//
+//resource "datafy_environment" "kristof" {
+//  name = "kristoftestadfad"
+//}
+//
+//output "kristof_env" {
+//  value = datafy_environment.kristof
+//}
