@@ -19,4 +19,5 @@ vendor/
 
 # Terraform
 *.tfstate
+*.tfstate.*
 **/.terraform/*

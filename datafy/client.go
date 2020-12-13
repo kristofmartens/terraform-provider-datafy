@@ -46,3 +46,25 @@ func NewClient(host, profileName string) (*Client, error) {
 
 	return &c, nil
 }
+
+func (c *Client) doRequest(req *http.Request) ([]byte, error) {
+	req.Header.Set("Authorization", c.Token.AccessToken)
+	req.Header.Set("accept", "application/json")
+
+	res, err := c.HTTPClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	if res.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("status: %d, body: %s", res.StatusCode, body)
+	}
+
+	return body, err
+}

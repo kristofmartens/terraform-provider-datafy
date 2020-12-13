@@ -22,14 +22,17 @@ func Provider() *schema.Provider {
 				DefaultFunc: schema.EnvDefaultFunc("DATAFY_PROFILE", DefaultDatafyProfile),
 			},
 		},
-		ResourcesMap:         nil,
-		DataSourcesMap:       nil,
+		ResourcesMap: nil,
+		DataSourcesMap: map[string]*schema.Resource{
+			//"datafy_environments": dataSourceEnvironments(),
+			"datafy_environment": dataSourceEnvironment(),
+		},
 		ProviderMetaSchema:   nil,
 		ConfigureContextFunc: providerConfigure,
 	}
 }
 
-func providerConfigure(ctx context.Context, d *schema.ResourceData) (interface{}, diag.Diagnostics) {
+func providerConfigure(_ context.Context, d *schema.ResourceData) (interface{}, diag.Diagnostics) {
 	var diags diag.Diagnostics
 	host := d.Get("host").(string)
 	profileName := d.Get("profile").(string)
