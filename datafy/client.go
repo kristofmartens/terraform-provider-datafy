@@ -36,7 +36,6 @@ func NewClient(host, profileName string) (*Client, error) {
 	if err = json.Unmarshal(profileValue, &token); err != nil {
 		return nil, err
 	}
-	fmt.Println(token)
 
 	c := Client{
 		HostURL:    host,

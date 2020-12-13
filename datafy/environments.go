@@ -17,7 +17,11 @@ type Environment struct {
 	UpdatedAt          string `json:"updatedAt"`
 }
 
-func (c *Client) GetEnvironments(state string) (*[]Environment, error) {
+type Environments struct {
+	Environments []Environment `json:"environments"`
+}
+
+func (c *Client) GetEnvironments(state string) (*Environments, error) {
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/api/v2/environments?state=%s", c.HostURL, state), nil)
 	if err != nil {
 		return nil, err
@@ -28,13 +32,13 @@ func (c *Client) GetEnvironments(state string) (*[]Environment, error) {
 		return nil, err
 	}
 
-	envs := new([]Environment)
+	var envs Environments
 	err = json.Unmarshal(body, &envs)
 	if err != nil {
 		return nil, err
 	}
 
-	return envs, nil
+	return &envs, nil
 }
 
 func (c *Client) GetEnvironment(id string) (*Environment, error) {

@@ -24,8 +24,8 @@ func Provider() *schema.Provider {
 		},
 		ResourcesMap: nil,
 		DataSourcesMap: map[string]*schema.Resource{
-			//"datafy_environments": dataSourceEnvironments(),
-			"datafy_environment": dataSourceEnvironment(),
+			"datafy_environments": dataSourceEnvironments(),
+			"datafy_environment":  dataSourceEnvironment(),
 		},
 		ProviderMetaSchema:   nil,
 		ConfigureContextFunc: providerConfigure,
