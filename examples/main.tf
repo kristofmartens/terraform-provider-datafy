@@ -20,13 +20,7 @@ output "env" {
   value = data.datafy_environment.env
 }
 
-// Environments Data source
-data "datafy_environments" "envs" {}
-
-output "envs" {
-  value = data.datafy_environments.envs
-}
-
+// Projects Data Source
 data "datafy_project" "project" {
   id = "b1955c1f-d6bb-4154-8baa-3de5b8963792"
 }
