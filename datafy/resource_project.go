@@ -69,27 +69,7 @@ func resourceProjectCreate(_ context.Context, data *schema.ResourceData, client 
 		return diag.FromErr(err)
 	}
 
-	data.SetId(project.Id)
-
-	if err = data.Set("name", project.Name); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("description", project.Description); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("git_repo", project.GitRepo); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("tenant_id", project.TenantId); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("created_at", project.CreatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("updated_at", project.UpdatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("last_activity", project.LastActivity); err != nil {
+	if err = mapProjectData(data, project); err != nil {
 		return diag.FromErr(err)
 	}
 
@@ -108,27 +88,7 @@ func resourceProjectRead(_ context.Context, data *schema.ResourceData, client in
 		return diag.FromErr(err)
 	}
 
-	data.SetId(project.Id)
-
-	if err = data.Set("name", project.Name); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("description", project.Description); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("git_repo", project.GitRepo); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("tenant_id", project.TenantId); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("created_at", project.CreatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("updated_at", project.UpdatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("last_activity", project.LastActivity); err != nil {
+	if err = mapProjectData(data, project); err != nil {
 		return diag.FromErr(err)
 	}
 
@@ -152,27 +112,7 @@ func resourceProjectUpdate(_ context.Context, data *schema.ResourceData, client 
 		return diag.FromErr(err)
 	}
 
-	data.SetId(project.Id)
-
-	if err = data.Set("name", project.Name); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("description", project.Description); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("git_repo", project.GitRepo); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("tenant_id", project.TenantId); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("created_at", project.CreatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("updated_at", project.UpdatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("last_activity", project.LastActivity); err != nil {
+	if err = mapProjectData(data, project); err != nil {
 		return diag.FromErr(err)
 	}
 
@@ -191,29 +131,39 @@ func resourceProjectDelete(_ context.Context, data *schema.ResourceData, client 
 		return diag.FromErr(err)
 	}
 
-	data.SetId(project.Id)
-
-	if err = data.Set("name", project.Name); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("description", project.Description); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("git_repo", project.GitRepo); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("tenant_id", project.TenantId); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("created_at", project.CreatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("updated_at", project.UpdatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("last_activity", project.LastActivity); err != nil {
+	if err = mapProjectData(data, project); err != nil {
 		return diag.FromErr(err)
 	}
 
 	return diags
+}
+
+func mapProjectData(data *schema.ResourceData, project *Project) error {
+	var err error = nil
+
+	data.SetId(project.Id)
+
+	if err = data.Set("name", project.Name); err != nil {
+		return err
+	}
+	if err = data.Set("description", project.Description); err != nil {
+		return err
+	}
+	if err = data.Set("git_repo", project.GitRepo); err != nil {
+		return err
+	}
+	if err = data.Set("tenant_id", project.TenantId); err != nil {
+		return err
+	}
+	if err = data.Set("created_at", project.CreatedAt); err != nil {
+		return err
+	}
+	if err = data.Set("updated_at", project.UpdatedAt); err != nil {
+		return err
+	}
+	if err = data.Set("last_activity", project.LastActivity); err != nil {
+		return err
+	}
+
+	return err
 }

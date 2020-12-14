@@ -65,27 +65,7 @@ func resourceEnvironmentCreate(_ context.Context, data *schema.ResourceData, cli
 		return diag.FromErr(err)
 	}
 
-	data.SetId(env.Id)
-
-	if err = data.Set("name", env.Name); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("description", env.Description); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("deletion_protection", env.DeletionProtection); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("state", env.State); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("tenant_id", env.TenantId); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("created_at", env.CreatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("updated_at", env.UpdatedAt); err != nil {
+	if err = mapEnvironmentData(data, env); err != nil {
 		return diag.FromErr(err)
 	}
 
@@ -103,27 +83,7 @@ func resourceEnvironmentRead(_ context.Context, data *schema.ResourceData, clien
 		return diag.FromErr(err)
 	}
 
-	data.SetId(env.Id)
-
-	if err = data.Set("name", env.Name); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("description", env.Description); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("deletion_protection", env.DeletionProtection); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("state", env.State); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("tenant_id", env.TenantId); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("created_at", env.CreatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("updated_at", env.UpdatedAt); err != nil {
+	if err = mapEnvironmentData(data, env); err != nil {
 		return diag.FromErr(err)
 	}
 
@@ -145,27 +105,7 @@ func resourceEnvironmentUpdate(_ context.Context, data *schema.ResourceData, cli
 		return diag.FromErr(err)
 	}
 
-	data.SetId(env.Id)
-
-	if err = data.Set("name", env.Name); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("description", env.Description); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("deletion_protection", env.DeletionProtection); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("state", env.State); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("tenant_id", env.TenantId); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("created_at", env.CreatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("updated_at", env.UpdatedAt); err != nil {
+	if err = mapEnvironmentData(data, env); err != nil {
 		return diag.FromErr(err)
 	}
 
@@ -182,29 +122,39 @@ func resourceEnvironmentDelete(_ context.Context, data *schema.ResourceData, cli
 		return diag.FromErr(err)
 	}
 
-	data.SetId(env.Id)
-
-	if err = data.Set("name", env.Name); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("description", env.Description); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("deletion_protection", env.DeletionProtection); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("state", env.State); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("tenant_id", env.TenantId); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("created_at", env.CreatedAt); err != nil {
-		return diag.FromErr(err)
-	}
-	if err = data.Set("updated_at", env.UpdatedAt); err != nil {
+	if err = mapEnvironmentData(data, env); err != nil {
 		return diag.FromErr(err)
 	}
 
 	return diags
+}
+
+func mapEnvironmentData(data *schema.ResourceData, env *Environment) error {
+	var err error = nil
+
+	data.SetId(env.Id)
+
+	if err = data.Set("name", env.Name); err != nil {
+		return err
+	}
+	if err = data.Set("description", env.Description); err != nil {
+		return err
+	}
+	if err = data.Set("deletion_protection", env.DeletionProtection); err != nil {
+		return err
+	}
+	if err = data.Set("state", env.State); err != nil {
+		return err
+	}
+	if err = data.Set("tenant_id", env.TenantId); err != nil {
+		return err
+	}
+	if err = data.Set("created_at", env.CreatedAt); err != nil {
+		return err
+	}
+	if err = data.Set("updated_at", env.UpdatedAt); err != nil {
+		return err
+	}
+
+	return err
 }
