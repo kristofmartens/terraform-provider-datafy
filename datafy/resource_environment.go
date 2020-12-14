@@ -131,6 +131,7 @@ func resourceEnvironmentRead(_ context.Context, data *schema.ResourceData, clien
 }
 
 func resourceEnvironmentUpdate(_ context.Context, data *schema.ResourceData, client interface{}) diag.Diagnostics {
+	// TODO: FIXME does not work yet for some reason
 	var diags diag.Diagnostics
 
 	c := client.(*Client)

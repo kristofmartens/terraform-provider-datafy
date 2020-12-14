@@ -24,6 +24,7 @@ func Provider() *schema.Provider {
 		},
 		ResourcesMap: map[string]*schema.Resource{
 			"datafy_environment": resourceEnvironment(),
+			"datafy_project":     resourceProject(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"datafy_environment": dataSourceEnvironment(),
